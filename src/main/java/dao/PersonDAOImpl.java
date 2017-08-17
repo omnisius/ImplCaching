@@ -7,7 +7,10 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class PersonDAOImpl implements PersonDAO {
+    private static final Logger LOG = Logger.getLogger(PersonDAOImpl.class);
 
     public void create(Person person) {
         PreparedStatement statement = null;
@@ -17,7 +20,7 @@ public class PersonDAOImpl implements PersonDAO {
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e);
         } finally {
             disconnect(getConnection(), null, statement);
         }
@@ -42,11 +45,11 @@ public class PersonDAOImpl implements PersonDAO {
             statement.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(e);
         } finally {
             disconnect(getConnection(), resultSet, statement);
         }
-        System.out.println(persons);
+        LOG.info(persons);
         return persons;
     }
 

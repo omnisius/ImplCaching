@@ -1,8 +1,11 @@
 package manager;
 
+import org.apache.log4j.Logger;
+
 import java.sql.*;
 
 public class ConnectionManager {
+    private static final Logger LOG = Logger.getLogger(ConnectionManager.class);
     private static final String COM_MYSQL_JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_CONNECTION_URL = "jdbc:mysql://localhost/caching?user=root&password=";
     private static ConnectionManager instance;
@@ -24,7 +27,7 @@ public class ConnectionManager {
                 connection = DriverManager.getConnection(DATABASE_CONNECTION_URL);
 
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            LOG.error(e);
         }
         return connection;
     }
@@ -41,7 +44,7 @@ public class ConnectionManager {
                 connection.close();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error(e);
         }
     }
 
