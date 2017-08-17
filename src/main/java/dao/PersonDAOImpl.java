@@ -15,7 +15,7 @@ public class PersonDAOImpl implements PersonDAO {
     public void create(Person person) {
         PreparedStatement statement = null;
         try {
-            statement = getConnection().prepareStatement("INSERT INTO caching.persons (id ,name) VALUES (NULL , ?)");
+            statement = getConnection().prepareStatement("INSERT INTO caching.person (id ,name) VALUES (NULL , ?)");
             statement.setString(1,  person.getName());
             statement.executeUpdate();
             statement.close();
@@ -32,7 +32,7 @@ public class PersonDAOImpl implements PersonDAO {
         ResultSet resultSet = null;
         try {
             statement = getConnection().createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM caching.persons");
+            resultSet = statement.executeQuery("SELECT * FROM caching.person");
             Person person;
             while (resultSet.next()) {
                 person = new Person();
