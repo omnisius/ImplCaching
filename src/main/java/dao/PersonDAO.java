@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PersonDAO {
 
-    public void create(Person person);
+    void create(Person person);
 
-    public List<Person> getPersons();
+    List<Person> getPersons();
 }

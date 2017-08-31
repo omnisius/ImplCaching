@@ -32,8 +32,4 @@ public class PersonCache {
     public Person get(String key) throws ExecutionException {
         return (Person) cache.getIfPresent(key);
     }
-
-    public long size() {
-        return cache.size();
-    }
 }
